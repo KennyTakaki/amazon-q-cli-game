@@ -4,7 +4,7 @@
 WIDTH = 800
 HEIGHT = 600
 FPS = 60
-TITLE = "My PyGame Game"
+TITLE = "AWS Service Name Quiz"
 
 # 色の定義
 WHITE = (255, 255, 255)
@@ -13,6 +13,15 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
+LIGHT_BLUE = (173, 216, 230)
+DARK_BLUE = (0, 0, 139)
+ORANGE = (255, 165, 0)
+LIGHT_GRAY = (220, 220, 220)
+DARK_GRAY = (80, 80, 80)
+
+# AWS色
+AWS_ORANGE = (255, 153, 0)
+AWS_DARK_BLUE = (51, 51, 102)
 
 # アセットパス
 ASSET_DIR = "assets"
@@ -22,6 +31,19 @@ MUSIC_DIR = f"{ASSET_DIR}/music"
 FONT_DIR = f"{ASSET_DIR}/fonts"
 
 # ゲーム設定
-PLAYER_SPEED = 5
-GRAVITY = 0.5
-JUMP_POWER = 10
+MAX_MISTAKES = 3  # 許容される間違いの回数
+
+# フォントサイズ
+TITLE_FONT_SIZE = 48
+SUBTITLE_FONT_SIZE = 32
+NORMAL_FONT_SIZE = 24
+SMALL_FONT_SIZE = 18
+
+# ボタン設定
+BUTTON_WIDTH = 200
+BUTTON_HEIGHT = 60
+BUTTON_PADDING = 20
+BUTTON_RADIUS = 10
+
+# アニメーション設定
+FEEDBACK_DURATION = 1000  # ミリ秒単位でのフィードバック表示時間

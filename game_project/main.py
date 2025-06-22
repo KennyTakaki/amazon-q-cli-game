@@ -3,8 +3,10 @@
 
 import pygame
 import sys
+import os
 from settings import *
 from src.scenes.main_menu import MainMenu
+from src.utils.create_dummy_icons import create_dummy_icons
 
 class Game:
     def __init__(self):
@@ -23,6 +25,9 @@ class Game:
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         pygame.display.set_caption(TITLE)
         self.clock = pygame.time.Clock()
+        
+        # ダミーアイコンを作成（実際のプロジェクトでは本物のアイコンを使用）
+        create_dummy_icons()
         
         # 現在のシーン
         self.current_scene = MainMenu(self)

@@ -1,34 +1,29 @@
-# PyGame Game Project
+# AWS Service Name Quiz
 
-このプロジェクトはPyGameを使用した2Dゲームのテンプレートです。
+AWSサービス名クイズゲーム - AWSサービスの接頭辞（AmazonかAWS）を当てるゲーム
 
-## ディレクトリ構成
+## ゲーム概要
 
-```
-game_project/
-│
-├── main.py              # ゲームのエントリーポイント
-├── settings.py          # ゲーム設定（解像度、FPS、色など）
-│
-├── assets/              # ゲームのアセット
-│   ├── images/          # スプライト、背景画像など
-│   ├── sounds/          # 効果音
-│   ├── music/           # BGM
-│   └── fonts/           # フォント
-│
-├── src/                 # ソースコード
-│   ├── entities/        # ゲームエンティティ（プレイヤー、敵など）
-│   ├── ui/              # ユーザーインターフェース関連
-│   ├── scenes/          # ゲームシーン
-│   ├── utils/           # ユーティリティ関数
-│   └── managers/        # ゲームマネージャー
-│
-├── data/                # ゲームデータ
-│   ├── levels/          # レベルデータ
-│   ├── save/            # セーブデータ
-│   └── config/          # 設定ファイル
-│
-└── tests/               # テストコード
+このゲームは、AWSサービスの名前の接頭辞が「Amazon」か「AWS」かを当てるクイズゲームです。
+サービス名の接頭辞を除いた部分が表示され、プレイヤーは正しい接頭辞を選択します。
+
+## 遊び方
+
+1. スタート画面で「Let's Play」ボタンをクリックしてゲームを開始します。
+2. 表示されたサービス名の接頭辞が「Amazon」か「AWS」かを選択します。
+3. 正解すると〇、不正解だと×が表示されます。
+4. 3回間違えるか、すべての問題に回答するとゲームが終了します。
+5. 結果画面で成績を確認し、「Play Again」ボタンで再プレイできます。
+
+## 必要なライブラリ
+
+- Python 3.x
+- Pygame
+
+## インストール方法
+
+```bash
+pip install pygame
 ```
 
 ## 実行方法
@@ -37,17 +32,31 @@ game_project/
 python main.py
 ```
 
-## 操作方法
+## プロジェクト構造
 
-- 左右矢印キー: 移動
-- スペース: ジャンプ
-- ESC: メニューに戻る
-
-## 依存関係
-
-- Python 3.6以上
-- PyGame 2.0.0以上
-
-```bash
-pip install pygame
 ```
+game_project/
+├── assets/
+│   └── images/       # サービスアイコン画像
+├── data/
+│   └── aws_services.py  # AWSサービスのデータ
+├── src/
+│   ├── scenes/       # ゲームシーン
+│   │   ├── base_scene.py
+│   │   ├── start_scene.py
+│   │   ├── game_scene.py
+│   │   ├── result_scene.py
+│   │   └── main_menu.py
+│   └── utils/        # ユーティリティ
+│       ├── ui.py
+│       └── create_dummy_icons.py
+├── main.py           # メインエントリーポイント
+├── settings.py       # ゲーム設定
+└── README.md         # このファイル
+```
+
+## カスタマイズ
+
+- `data/aws_services.py` にAWSサービスを追加することでクイズの問題を増やせます
+- `settings.py` でゲームの設定を変更できます
+- 実際のAWSサービスアイコンを `assets/images/` に追加することで見た目を改善できます
