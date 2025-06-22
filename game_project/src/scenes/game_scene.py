@@ -151,7 +151,7 @@ class GameScene(BaseScene):
         screen.fill(WHITE)
         
         # スコア表示
-        score_text = f"正解: {self.correct_count}  間違い: {self.mistake_count}/{MAX_MISTAKES}"
+        score_text = f"Correct: {self.correct_count}  Wrong: {self.mistake_count}/{MAX_MISTAKES}"
         draw_text(screen, score_text, NORMAL_FONT_SIZE, WIDTH // 2, HEIGHT * 0.1, BLACK)
         
         # 現在のサービス情報を表示
@@ -167,7 +167,7 @@ class GameScene(BaseScene):
             draw_text(screen, service_name, SUBTITLE_FONT_SIZE, WIDTH // 2, HEIGHT * 0.45, BLACK)
             
             # 説明テキスト
-            draw_text(screen, "このサービスの接頭辞は？", NORMAL_FONT_SIZE, WIDTH // 2, HEIGHT * 0.52, DARK_GRAY)
+            draw_text(screen, "Which prefix?", NORMAL_FONT_SIZE, WIDTH // 2, HEIGHT * 0.52, DARK_GRAY)
             
             # ボタンを描画
             if not self.showing_feedback:
@@ -176,13 +176,13 @@ class GameScene(BaseScene):
         
         # フィードバック表示
         if self.showing_feedback:
-            feedback_rect = pygame.Rect(WIDTH // 2 - 100, HEIGHT * 0.7, 200, 100)
+            feedback_rect = pygame.Rect(WIDTH // 2 - 150, HEIGHT * 0.65, 300, 150)
             
             if self.feedback_correct:
                 # 正解フィードバック
                 draw_rounded_rect(screen, feedback_rect, GREEN, radius=15)
-                draw_text(screen, "正解！", SUBTITLE_FONT_SIZE, WIDTH // 2, HEIGHT * 0.75, WHITE)
+                draw_text(screen, "Correct!", TITLE_FONT_SIZE, WIDTH // 2, HEIGHT * 0.72, WHITE)
             else:
                 # 不正解フィードバック
                 draw_rounded_rect(screen, feedback_rect, RED, radius=15)
-                draw_text(screen, "不正解...", SUBTITLE_FONT_SIZE, WIDTH // 2, HEIGHT * 0.75, WHITE)
+                draw_text(screen, "Wrong!", TITLE_FONT_SIZE, WIDTH // 2, HEIGHT * 0.72, WHITE)

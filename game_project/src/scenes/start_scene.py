@@ -39,18 +39,17 @@ class StartScene(BaseScene):
         screen.fill(AWS_DARK_BLUE)
         
         # タイトル
-        draw_text(screen, "AWS Service Name Quiz", TITLE_FONT_SIZE, WIDTH // 2, HEIGHT * 0.2, AWS_ORANGE)
+        draw_text(screen, "AWS Service Name Quiz", TITLE_FONT_SIZE, WIDTH // 2, HEIGHT * 0.15, AWS_ORANGE)
         
         # ゲーム説明
-        explanation_box = pygame.Rect(WIDTH * 0.1, HEIGHT * 0.3, WIDTH * 0.8, HEIGHT * 0.3)
+        explanation_box = pygame.Rect(WIDTH * 0.1, HEIGHT * 0.25, WIDTH * 0.8, HEIGHT * 0.35)
         draw_rounded_rect(screen, explanation_box, LIGHT_GRAY, radius=15)
         
         instructions = [
-            "AWSには「Amazon」または「AWS」で始まるサービスがあります。",
-            "サービス名の先頭部分が表示されていないので、",
-            "「Amazon」か「AWS」のどちらで始まるか当ててください！",
+            "AWS services start with either 'Amazon' or 'AWS'.",
+            "The prefix is hidden - can you guess which one?",
             "",
-            "3回間違えるとゲーム終了です。チャレンジしてみましょう！"
+            "Game ends after 3 mistakes. Good luck!"
         ]
         
         for i, line in enumerate(instructions):
@@ -59,7 +58,7 @@ class StartScene(BaseScene):
                 line, 
                 SMALL_FONT_SIZE, 
                 WIDTH // 2, 
-                HEIGHT * 0.35 + i * 30, 
+                HEIGHT * 0.3 + i * 40, 
                 BLACK
             )
         

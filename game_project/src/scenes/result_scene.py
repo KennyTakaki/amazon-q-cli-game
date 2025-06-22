@@ -14,9 +14,9 @@ class ResultScene(BaseScene):
         self.mistake_count = mistake_count
         self.total_questions = correct_count + mistake_count
         
-        # 再プレイボタンの作成
+        # 再プレイボタンの作成 - 位置を調整
         button_x = WIDTH // 2 - BUTTON_WIDTH // 2
-        button_y = HEIGHT * 0.7
+        button_y = HEIGHT * 0.78  # 白い背景の下に配置するために位置を下げる
         self.replay_button = Button(
             button_x, button_y, 
             BUTTON_WIDTH, BUTTON_HEIGHT, 
@@ -44,10 +44,10 @@ class ResultScene(BaseScene):
         screen.fill(AWS_DARK_BLUE)
         
         # タイトル
-        draw_text(screen, "ゲーム結果", TITLE_FONT_SIZE, WIDTH // 2, HEIGHT * 0.2, AWS_ORANGE)
+        draw_text(screen, "Game Results", TITLE_FONT_SIZE, WIDTH // 2, HEIGHT * 0.15, AWS_ORANGE)
         
-        # 結果表示用の背景ボックス
-        result_box = pygame.Rect(WIDTH * 0.2, HEIGHT * 0.3, WIDTH * 0.6, HEIGHT * 0.3)
+        # 結果表示用の背景ボックス - 評価メッセージも含めるために高さを拡大
+        result_box = pygame.Rect(WIDTH * 0.15, HEIGHT * 0.25, WIDTH * 0.7, HEIGHT * 0.45)
         draw_rounded_rect(screen, result_box, WHITE, radius=15)
         
         # スコア表示
@@ -57,43 +57,43 @@ class ResultScene(BaseScene):
             
         draw_text(
             screen, 
-            f"正解数: {self.correct_count}", 
-            NORMAL_FONT_SIZE, 
+            f"Correct: {self.correct_count}", 
+            SUBTITLE_FONT_SIZE, 
             WIDTH // 2, 
-            HEIGHT * 0.38, 
+            HEIGHT * 0.35, 
             BLACK
         )
         
         draw_text(
             screen, 
-            f"間違い数: {self.mistake_count}", 
-            NORMAL_FONT_SIZE, 
+            f"Wrong: {self.mistake_count}", 
+            SUBTITLE_FONT_SIZE, 
             WIDTH // 2, 
-            HEIGHT * 0.45, 
+            HEIGHT * 0.43, 
             BLACK
         )
         
         draw_text(
             screen, 
-            f"正答率: {accuracy:.1f}%", 
-            NORMAL_FONT_SIZE, 
+            f"Accuracy: {accuracy:.1f}%", 
+            SUBTITLE_FONT_SIZE, 
             WIDTH // 2, 
-            HEIGHT * 0.52, 
+            HEIGHT * 0.51, 
             BLACK
         )
         
-        # 評価メッセージ
+        # 評価メッセージ - 白い背景の中に配置
         message = ""
         if accuracy >= 90:
-            message = "素晴らしい！AWSマスターですね！"
+            message = "Excellent! You're an AWS Master!"
         elif accuracy >= 70:
-            message = "よくできました！AWSの知識が豊富です！"
+            message = "Well done! You have good AWS knowledge!"
         elif accuracy >= 50:
-            message = "まずまずの結果です。もう少し練習しましょう！"
+            message = "Not bad. Keep practicing!"
         else:
-            message = "AWSサービスについてもっと学びましょう！"
+            message = "Learn more about AWS services!"
             
-        draw_text(screen, message, NORMAL_FONT_SIZE, WIDTH // 2, HEIGHT * 0.6, AWS_ORANGE)
+        draw_text(screen, message, NORMAL_FONT_SIZE, WIDTH // 2, HEIGHT * 0.60, AWS_ORANGE)
         
-        # 再プレイボタン
+        # 再プレイボタン - 白い背景の下に配置
         self.replay_button.draw(screen)

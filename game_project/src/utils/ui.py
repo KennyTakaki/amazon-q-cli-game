@@ -1,4 +1,5 @@
 import pygame
+import os
 from settings import *
 
 class Button:
@@ -21,10 +22,7 @@ class Button:
         pygame.draw.rect(surface, color, self.rect, border_radius=self.radius)
         
         # テキストを描画
-        font = pygame.font.Font(None, NORMAL_FONT_SIZE)
-        text_surface = font.render(self.text, True, self.text_color)
-        text_rect = text_surface.get_rect(center=self.rect.center)
-        surface.blit(text_surface, text_rect)
+        draw_text(surface, self.text, NORMAL_FONT_SIZE, self.rect.centerx, self.rect.centery, self.text_color)
         
     def update(self, mouse_pos):
         """ボタンの状態を更新する"""
@@ -38,9 +36,48 @@ class Button:
 
 
 def draw_text(surface, text, size, x, y, color=WHITE, align="center"):
-    """テキストを描画する"""
+    """テキストを描画する - シンプルな実装"""
+    # デフォルトフォントを使用
     font = pygame.font.Font(None, size)
-    text_surface = font.render(text, True, color)
+    
+    # テキストが空でないことを確認
+    if not text:
+        text = " "
+    
+    # ASCII文字のみを使用（日本語文字を一時的に置き換え）
+    safe_text = ""
+    for char in text:
+        if ord(char) < 128:  # ASCII文字のみ
+            safe_text += char
+        else:
+            # 日本語文字は一時的に置き換え
+            if "正解" in text:
+                safe_text = "Correct!"
+            elif "不正解" in text:
+                safe_text = "Wrong!"
+            elif "このサービスの接頭辞は" in text:
+                safe_text = "Prefix?"
+            elif "ゲーム結果" in text:
+                safe_text = "Results"
+            elif "正解数" in text:
+                safe_text = f"Correct: {text.split(':')[1] if ':' in text else ''}"
+            elif "間違い数" in text:
+                safe_text = f"Wrong: {text.split(':')[1] if ':' in text else ''}"
+            elif "正答率" in text:
+                safe_text = f"Accuracy: {text.split(':')[1] if ':' in text else ''}"
+            elif "素晴らしい" in text:
+                safe_text = "Excellent! AWS Master!"
+            elif "よくできました" in text:
+                safe_text = "Well done! Good knowledge!"
+            elif "まずまず" in text:
+                safe_text = "Not bad. Keep practicing!"
+            elif "もっと学びましょう" in text:
+                safe_text = "Learn more about AWS services!"
+            else:
+                safe_text = "AWS Quiz"
+            break
+    
+    text_surface = font.render(safe_text, True, color)
     text_rect = text_surface.get_rect()
     
     if align == "center":

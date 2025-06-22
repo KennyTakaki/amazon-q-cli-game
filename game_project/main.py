@@ -18,6 +18,13 @@ class Game:
     def __init__(self):
         # Pygameの初期化
         pygame.init()
+        pygame.font.init()  # フォントモジュールを明示的に初期化
+        
+        # 日本語フォントの存在確認
+        if os.path.exists(JAPANESE_FONT):
+            print(f"日本語フォントを読み込みました: {JAPANESE_FONT}")
+        else:
+            print(f"警告: 日本語フォントが見つかりません: {JAPANESE_FONT}")
         
         # オーディオ初期化（失敗しても続行）
         try:
