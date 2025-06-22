@@ -4,6 +4,12 @@
 import pygame
 import sys
 import os
+
+# 現在のディレクトリをパスに追加
+current_dir = os.path.dirname(os.path.abspath(__file__))
+if current_dir not in sys.path:
+    sys.path.append(current_dir)
+
 from settings import *
 from src.scenes.main_menu import MainMenu
 from src.utils.create_dummy_icons import create_dummy_icons

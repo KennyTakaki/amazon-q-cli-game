@@ -1,12 +1,22 @@
 import pygame
 import os
-from data.aws_services import AWS_SERVICES
+import sys
 
 def create_dummy_icons():
     """
     AWSサービスのダミーアイコンを作成する
     実際のプロジェクトでは本物のアイコンを使用することを推奨
     """
+    # 現在のディレクトリを確認
+    current_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    
+    # データモジュールをインポートするためにパスを追加
+    if current_dir not in sys.path:
+        sys.path.append(current_dir)
+    
+    # AWSサービスデータをインポート
+    from data.aws_services import AWS_SERVICES
+    
     # Pygameを初期化
     pygame.init()
     
@@ -16,7 +26,7 @@ def create_dummy_icons():
     # 各サービスのダミーアイコンを作成
     for service in AWS_SERVICES:
         # アイコンのパスを取得
-        icon_path = service["icon_path"]
+        icon_path = os.path.join(current_dir, service["icon_path"])
         
         # ディレクトリが存在しない場合は作成
         os.makedirs(os.path.dirname(icon_path), exist_ok=True)

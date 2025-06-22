@@ -69,15 +69,21 @@ class GameScene(BaseScene):
             service = self.services[self.current_service_index]
             icon_path = service["icon_path"]
             
+            # 絶対パスに変換
+            current_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+            full_icon_path = os.path.join(current_dir, icon_path)
+            
             # アイコンが存在するか確認
-            if os.path.exists(icon_path):
+            if os.path.exists(full_icon_path):
                 try:
-                    self.current_icon = pygame.image.load(icon_path).convert_alpha()
+                    self.current_icon = pygame.image.load(full_icon_path).convert_alpha()
                     # アイコンのサイズを調整
                     self.current_icon = pygame.transform.scale(self.current_icon, (150, 150))
                 except pygame.error:
+                    print(f"アイコンの読み込みに失敗しました: {full_icon_path}")
                     self.current_icon = self.default_icon
             else:
+                print(f"アイコンが見つかりません: {full_icon_path}")
                 self.current_icon = self.default_icon
         
     def handle_events(self, event):
